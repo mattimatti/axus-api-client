@@ -47,14 +47,6 @@ class Basic implements AuthInterface
     public function sign()
     {
         
-//         if($this->username == null || empty($this->username)){
-//             throw new AuthException('Authentication required');
-//         }
-//         if($this->password == null || empty($this->password)){
-//             throw new AuthException('Authentication required');
-//         }
-        
-        
         return [
             'auth' => [
                 $this->username,

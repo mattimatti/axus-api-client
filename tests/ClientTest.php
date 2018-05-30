@@ -136,7 +136,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'username',
-                'id'
+                'username'
+            ],
+            [
+                'clientId',
+                'clientid'
             ],
             [
                 'password',
