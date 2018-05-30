@@ -1,5 +1,6 @@
 {
     "name": "mattimatti/axus-api-client",
+    "version": "0.0.1",
     "type": "library",
     "description": "Axus Travel App API client",
     "homepage": "https://github.com/mattimatti/axus-api-client",
@@ -45,6 +46,5 @@
     "support": {
         "issues": "https://github.com/mattimatti/axus-api-client/issues",
         "wiki": "https://github.com/mattimatti/axus-api-client/wiki"
-    },
-    "version": "0.0.1"
+    }
 }
