@@ -1,0 +1,31 @@
+{
+  "@context": "http://schema.org",
+  "@type": "InsuranceReservation",
+  "reservationId": "442321",
+  "reservationNumber": "abc456",
+  "image": "http://example.com/image.png",
+  "reservationFor": {
+    "@type": "TravelInsurance",
+    "name": "Gold Travel Plan",
+    "policyType": "Standard",
+    "company": {
+      "@type": "LocalBusiness",
+      "name": "Travelex",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "45 Village Run Cir",
+        "addressLocality": "Snowmass Village",
+        "addressRegion": "CO",
+        "postalCode": "81615",
+        "addressCountry": "US"
+      },
+      "telephone": "415-555-5555",
+      "tollFreeTelephone": "1-800-555-5555",
+      "url": "http://www.example.com"
+    }
+  },
+  "effectiveDate": "2017-04-10T16:00:00-08:00",
+  "additionalText": "Notes go here",
+  "paymentDescription": "Paid in Full",
+  "modifiedTime": "2013-05-01T08:00:00-08:00"
+}

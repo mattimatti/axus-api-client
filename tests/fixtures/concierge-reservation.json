@@ -1,0 +1,37 @@
+{
+  "@context": "http://schema.org",
+  "@type": "ConciergeReservation",
+  "reservationId": "442321",
+  "reservationNumber": "abc456",
+  "serviceType": "4 of 5 day Lift Ticket",
+  "image": "http://example.com/image.png",
+  "underName": {
+    "@type": "Person",
+    "name": "John Smith"
+  },
+  "confirmedBy": {
+    "@type": "Person",
+    "name": "Nancy Drew"
+  },
+  "reservationFor": {
+    "@type": "LocalBusiness",
+    "name": "Aspen Snowmass",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "45 Village Run Cir",
+      "addressLocality": "Snowmass Village",
+      "addressRegion": "CO",
+      "postalCode": "81615",
+      "addressCountry": "US"
+    },
+    "telephone": "415-771-1400",
+    "url": "http://www.example.com"
+  },
+  "cancellationPolicy": "24 Hours for 80% refund",
+  "endDate": "2017-04-13T11:00:00-08:00",
+  "startDate": "2017-04-10T16:00:00-08:00",
+  "conciergeDescription": "Describe concierge service ...",
+  "additionalText": "Pick up tickets at ...",
+  "paymentDescription": "Paid in Full",
+  "modifiedTime": "2013-05-01T08:00:00-08:00"
+}

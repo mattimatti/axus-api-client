@@ -1,0 +1,36 @@
+{
+  "@context": "http://schema.org",
+  "@type": "TransferReservation",
+  "reservationNumber": "546324",
+  "reservationId": "442425",
+  "modifiedTime": "2013-03-14T13:05:00-05:00",
+  "image": "http://example.com/image.png",
+  "reservationFor": {
+    "@type": "LocalBusiness",
+    "name": "Bills Limo",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "45 Village Run Cir",
+      "addressLocality": "Snowmass Village",
+      "addressRegion": "CO",
+      "postalCode": "81615",
+      "addressCountry": "US"
+    },
+    "telephone": "415-771-1400",
+    "url": "http://www.example.com"
+  },
+  "vehicle": "Black Towncar",
+  "pickupLocation": {
+    "@type": "Place",
+    "name": "Hertz San Diego Airport"
+  },
+  "pickupTime": "2017-08-05T16:00:00-07:00",
+  "dropoffLocation": {
+    "@type": "Place",
+    "name": "Hertz LAX"
+  },
+  "cancellationPolicy": "24 Hours for 80% refund",
+  "additionalText": "Notes for the traveler ...",
+  "numAdults": 2,
+  "paymentDescription": "Paid in Full"
+}

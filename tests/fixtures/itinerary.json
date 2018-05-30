@@ -1,0 +1,433 @@
+{
+  "title": "Excellent Adventure",
+  "startDate": "2019-01-01",
+  "endDate": "2019-08-20",
+  "id": "11231",
+  "image": "http://example.com/image/123.jpg",
+  "collaboratos": [
+    {
+      "name": "Suzy Agent",
+      "email": "suzy@example.com"
+    },
+    {
+      "name": "Tommy Operator",
+      "email": "username@example.com"
+    }
+  ],
+  "bookings": [
+    {
+      "@context": "http://schema.org",
+      "@type": "LodgingReservation",
+      "reservationId": "442321",
+      "reservationNumber": "abc456",
+      "image": "http://example.com/image.png",
+      "underName": {
+        "@type": "Person",
+        "name": "John Smith"
+      },
+      "numAdults": 2,
+      "reservationFor": {
+        "@type": "LodgingBusiness",
+        "name": "Hilton San Francisco Union Square",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "333 O'Farrell St",
+          "addressLocality": "San Francisco",
+          "addressRegion": "CA",
+          "postalCode": "94102",
+          "addressCountry": "US"
+        },
+        "telephone": "415-771-1400",
+        "url": "http://www.example.com"
+      },
+      "amenities": "Complementary Breakfast\nFree Wifi",
+      "cancellationPolicy": "24 Hours for 80% refund",
+      "checkoutDate": "2019-04-13T11:00:00-08:00",
+      "checkinDate": "2019-04-10T16:00:00-08:00",
+      "lodgingUnitDescription": "Bay View",
+      "beddingDescription": "Double Queen",
+      "url": "http://example.com/ExpandedHotelProfile.html",
+      "paymentDescription": "Paid in Full",
+      "lodgingDescription": "Description of lodging ...",
+      "additionalText": "Notes for the traveler ...",
+      "modifiedTime": "2013-05-01T08:00:00-08:00"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "FlightReservation",
+      "reservationNumber": "RXJ34P",
+      "reservationId": "55231",
+      "url": "http://cheapair.com/view/RXJ34P",
+      "passengers": [{
+        "@type": "Person",
+        "name": "Eva Green",
+        "ticketNumber": "123XYZ",
+        "airplaneSeat": "9A",
+        "airplaneSeatClass": {
+          "@type": "AirplaneSeatClass",
+          "name": "Business"
+        },
+        "programMembership": {
+          "@type": "ProgramMembership",
+          "memberNumber": "4BY123111"
+        }
+      }],
+      "modifiedTime": "2013-03-14T13:05:00-05:00",
+      "checkinUrl": "http://united.com/onlinecheckin.html",
+      "reservationFor": {
+        "@type": "Flight",
+        "flightNumber": "110",
+        "airline": {
+          "@type": "Airline",
+          "name": "United",
+          "iataCode": "UA",
+          "telephone": "(800) 555-5555"
+        },
+        "operatedBy": {
+          "@type": "Airline",
+          "name": "Continental Airlines",
+          "iataCode": "CO"
+        },
+        "departureAirport": {
+          "@type": "Airport",
+          "name": "San Francisco Airport",
+          "iataCode": "SFO",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "San Francisco"
+          }
+        },
+        "departureTime": "2019-03-04T20:15:00-08:00",
+        "departureTerminal": "B",
+        "arrivalAirport": {
+          "@type": "Airport",
+          "name": "John F. Kennedy International Airport",
+          "iataCode": "JFK",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "New York"
+          }
+        },
+        "arrivalTime": "2019-03-05T06:30:00-05:00",
+        "arrivalTerminal": "B"
+      },
+      "additionalTicketText": "Some ticket details, terms and conditions..."
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "ConciergeReservation",
+      "reservationId": "442321",
+      "reservationNumber": "abc456",
+      "serviceType": "4 of 5 day Lift Ticket",
+      "image": "http://example.com/image.png",
+      "underName": {
+        "@type": "Person",
+        "name": "John Smith"
+      },
+      "confirmedBy": {
+        "@type": "Person",
+        "name": "Nancy Drew"
+      },
+      "reservationFor": {
+        "@type": "LocalBusiness",
+        "name": "Aspen Snowmass",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "45 Village Run Cir",
+          "addressLocality": "Snowmass Village",
+          "addressRegion": "CO",
+          "postalCode": "81615",
+          "addressCountry": "US"
+        },
+        "telephone": "415-771-1400",
+        "url": "http://www.example.com"
+      },
+      "cancellationPolicy": "24 Hours for 80% refund",
+      "endDate": "2019-04-13T11:00:00-08:00",
+      "startDate": "2019-04-10T16:00:00-08:00",
+      "conciergeDescription": "Paid in Full",
+      "additionalText": "Pick up tickets at ...",
+      "paymentDescription": "Paid in Full",
+      "modifiedTime": "2013-05-01T08:00:00-08:00"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "RentalCarReservation",
+      "reservationNumber": "546323",
+      "reservationId": "442211",
+      "image": "http://example.com/image.png",
+      "underName": {
+        "@type": "Person",
+        "name": "John Smith"
+      },
+      "modifiedTime": "2013-03-14T13:05:00-05:00",
+      "reservationFor": {
+        "@type": "RentalCar",
+        "name": "Economy Class Car",
+        "rentalCompany": {
+          "@type": "Organization",
+          "name": "Hertz",
+          "url": "http://www.example.com"
+        }
+      },
+      "pickupLocation": {
+        "@type": "Place",
+        "name": "Hertz San Diego Airport",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1500 Orange Avenue",
+          "addressLocality": "San Diego",
+          "addressRegion": "CA",
+          "postalCode": "94043",
+          "addressCountry": "US"
+        },
+        "telephone": "+1-800-123-4567"
+      },
+      "pickupTime": "2019-08-05T16:00:00-07:00",
+      "dropoffLocation": {
+        "@type": "Place",
+        "name": "Hertz LAX",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1234 First Street",
+          "addressLocality": "Los Angeles",
+          "addressRegion": "CA",
+          "postalCode": "94043",
+          "addressCountry": "US"
+        },
+        "telephone": "+1-800-123-4567"
+      },
+      "dropoffTime": "2019-08-06T20:00:00-07:00",
+      "cancellationPolicy": "24 Hours for 80% refund",
+      "additionalText": "Notes for the traveler ...",
+      "paymentDescription": "Paid in Full"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "TransferReservation",
+      "reservationNumber": "546324",
+      "reservationId": "442211",
+      "modifiedTime": "2013-03-14T13:05:00-05:00",
+      "image": "http://example.com/image.png",
+      "reservationFor": {
+        "@type": "LocalBusiness",
+        "name": "Bills Limo",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "45 Village Run Cir",
+          "addressLocality": "Snowmass Village",
+          "addressRegion": "CO",
+          "postalCode": "81615",
+          "addressCountry": "US"
+        },
+        "telephone": "415-771-1400",
+        "url": "http://www.example.com"
+      },
+      "vehicle": "Black Towncar",
+      "pickupLocation": {
+        "@type": "Place",
+        "name": "Hertz San Diego Airport"
+      },
+      "pickupTime": "2019-08-05T16:00:00-07:00",
+      "dropoffLocation": {
+        "@type": "Place",
+        "name": "Hertz LAX"
+      },
+      "cancellationPolicy": "24 Hours for 80% refund",
+      "additionalText": "Notes for the traveler ...",
+      "numAdults": 2,
+      "paymentDescription": "Paid in Full"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "TrainReservation",
+      "reservationNumber": "AB3XY2",
+      "reservationId": "556677",
+      "underName": {
+        "@type": "Person",
+        "name": "John Smith",
+        "email": "john@mail.com"
+      },
+      "bookingTime": "2013-01-14T13:05:00-05:00",
+      "modifiedTime": "2013-03-14T13:05:00-05:00",
+      "reservationFor": {
+        "@type": "TrainTrip",
+        "trainNumber": "9203",
+        "trainName": "Orient Express",
+        "trainCode": "iGTV",
+        "trainCompany": {
+          "@type": "Organization"
+        },
+        "departureStation": {
+          "@type": "TrainStation",
+          "name": "Munich Central"
+        },
+        "departureTime": "2019-01-04T10:30:00+01:00",
+        "arrivalStation": {
+          "@type": "TrainStation",
+          "name": "Paris Gare De Lyon"
+        },
+        "arrivalTime": "2019-01-04T03:10:00+01:00"
+      },
+      "reservedTicket": {
+        "@type": "Ticket",
+        "ticketNumber": "123XYZ",
+        "additionalTicketText": "?",
+        "underName": {
+          "@type": "Person",
+          "name": "Mary Smith"
+        },
+        "ticketedSeat": {
+          "@type": "Seat",
+          "seatingType": "1st Class",
+          "seatNumber": "27",
+          "seatRow": "A"
+        }
+      }
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "TourReservation",
+      "reservationId": "442321",
+      "reservationNumber": "abc456",
+      "image": "http://example.com/image.png",
+      "name": "Aspen Snow Tour",
+      "underName": {
+        "@type": "Person",
+        "name": "John Smith"
+      },
+      "confirmedBy": {
+        "@type": "Person",
+        "name": "Nancy Drew"
+      },
+      "reservationFor": {
+        "@type": "LocalBusiness",
+        "name": "Joe's Tours",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "45 Village Run Cir",
+          "addressLocality": "Snowmass Village",
+          "addressRegion": "CO",
+          "postalCode": "81615",
+          "addressCountry": "US"
+        },
+        "telephone": "415-555-5555",
+        "url": "http://www.example.com"
+      },
+      "cancellationPolicy": "24 Hours",
+      "endDate": "2019-04-13T11:00:00-08:00",
+      "startDate": "2019-04-10T16:00:00-08:00",
+      "tourDescription": "A 3 hour walking tour ...",
+      "meetingPoint": "Town Square",
+      "additionalText": "Notes go here",
+      "modifiedTime": "2013-05-01T08:00:00-08:00"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "InsuranceReservation",
+      "reservationId": "442321",
+      "reservationNumber": "abc456",
+      "image": "http://example.com/image.png",
+      "reservationFor": {
+        "@type": "TravelInsurance",
+        "name": "Gold Travel Plan",
+        "policyType": "Standard",
+        "company": {
+          "@type": "LocalBusiness",
+          "name": "Travelex",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "45 Village Run Cir",
+            "addressLocality": "Snowmass Village",
+            "addressRegion": "CO",
+            "postalCode": "81615",
+            "addressCountry": "US"
+          },
+          "telephone": "415-555-5555",
+          "tollFreeTelephone": "1-800-555-5555",
+          "url": "http://www.example.com"
+        }
+      },
+      "effectiveDate": "2019-04-10T16:00:00-08:00",
+      "additionalText": "Notes go here",
+      "paymentDescription": "Paid in Full",
+      "modifiedTime": "2013-05-01T08:00:00-08:00"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "CruiseReservation",
+      "reservationId": "442321",
+      "reservationNumber": "abc456",
+      "image": "http://example.com/image.png",
+      "name": "Inside Passage Cruise",
+      "cabinCategory": "Balcony",
+      "cabinNumber": "1253",
+      "beddingDescription": "Double Queen",
+      "underName": {
+        "@type": "Person",
+        "name": "John Smith"
+      },
+      "numAdults": 2,
+      "reservationFor": {
+        "@type": "CruiseBusiness",
+        "name": "Princess Cruises",
+        "telephone": "415-771-1400",
+        "url": "http://www.example.com"
+      },
+      "portsOfCall": [
+        {
+          "@type": "SeaPort",
+          "name": "Vancouver",
+          "image": "http://example.com/vancouver.png",
+          "arrivalDate": "2019-04-10T10:00:00-08:00",
+          "departureDate": "2019-04-10T16:00:00-08:00",
+          "additionalText": "Notes..."
+        },
+        {
+          "@type": "SeaPort",
+          "name": "Akron",
+          "image": "http://example.com/scenic_ohio.png",
+          "arrivalDate": "2019-04-11T10:00:00-08:00",
+          "departureDate": "2019-04-11T16:00:00-08:00",
+          "additionalText": "Notes..."
+        },
+        {
+          "@type": "SeaPort",
+          "name": "Anchorage",
+          "image": "http://example.com/anchorage.png",
+          "arrivalDate": "2019-04-12T10:00:00-08:00",
+          "additionalText": "Disembarkation Notes..."
+        }
+      ],
+      "cancellationPolicy": "24 Hours for 80% refund",
+      "ship": {
+        "@type": "CruiseShip",
+        "name": "Concordia"
+      },
+      "paymentDescription": "Paid in Full",
+      "modifiedTime": "2013-05-01T08:00:00-08:00"
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "Reservation",
+      "reservationId": "442321",
+      "image": "http://example.com/image.png",
+      "reservationFor": {
+        "@type": "LodgingBusiness",
+        "name": "Generic Reservation Title",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "333 O'Farrell St",
+          "addressLocality": "San Francisco",
+          "addressRegion": "CA",
+          "postalCode": "94102",
+          "addressCountry": "US"
+        },
+        "telephone": "415-771-1400",
+        "url": "http://www.example.com"
+      },
+      "startDate": "2019-04-13T11:00:00-08:00",
+      "modifiedTime": "2018-05-01T08:00:00-08:00"
+    }
+  ]
+}

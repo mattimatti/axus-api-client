@@ -1,0 +1,60 @@
+{"@context": "http://schema.org",
+  "@type": "FlightReservation",
+  "reservationNumber": "RXJ34P",
+  "reservationId": "55231",
+  "url": "http://cheapair.com/view/RXJ34P",
+  "passengers": [{
+    "@type": "Person",
+    "name": "Eva Green",
+    "ticketNumber": "123XYZ",
+    "airplaneSeat": "9A",
+    "airplaneSeatClass": {
+      "@type": "AirplaneSeatClass",
+      "name": "Business"
+    },
+    "programMembership": {
+      "@type": "ProgramMembership",
+      "memberNumber": "4BY123111"
+    }
+  }],
+  "modifiedTime": "2013-03-14T13:05:00-05:00",
+  "checkinUrl": "http://united.com/onlinecheckin.html",
+  "reservationFor": {
+    "@type": "Flight",
+    "flightNumber": "110",
+    "airline": {
+      "@type": "Airline",
+      "name": "United",
+      "iataCode": "UA",
+      "telephone": "(800) 555-5555"
+    },
+    "operatedBy": {
+      "@type": "Airline",
+      "name": "Continental Airlines",
+      "iataCode": "CO"
+    },
+    "departureAirport": {
+      "@type": "Airport",
+      "name": "San Francisco Airport",
+      "iataCode": "SFO",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Francisco"
+      }
+    },
+    "departureTime": "2017-03-04T20:15:00-08:00",
+    "departureTerminal": "B",
+    "arrivalAirport": {
+      "@type": "Airport",
+      "name": "John F. Kennedy International Airport",
+      "iataCode": "JFK",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "New York"
+      }
+    },
+    "arrivalTime": "2017-03-05T06:03:00-05:00",
+    "arrivalTerminal": "A"
+  },
+  "additionalTicketText": "Some ticket details, terms and conditions..."
+}

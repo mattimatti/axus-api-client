@@ -1,0 +1,47 @@
+{
+  "@context": "http://schema.org",
+  "@type": "TrainReservation",
+  "reservationNumber": "AB3XY2",
+  "reservationId": "556677",
+  "underName": {
+    "@type": "Person",
+    "name": "John Smith",
+    "email": "john@mail.com"
+  },
+  "bookingTime": "2013-01-14T13:05:00-05:00",
+  "modifiedTime": "2013-03-14T13:05:00-05:00",
+  "reservationFor": {
+    "@type": "TrainTrip",
+    "trainNumber": "9203",
+    "trainName": "Orient Express",
+    "trainCode": "iGTV",
+    "trainCompany": {
+      "@type": "Organization"
+    },
+    "departureStation": {
+      "@type": "TrainStation",
+      "name": "Munich Central"
+    },
+    "departureTime": "2017-01-04T10:30:00+01:00",
+    "arrivalStation": {
+      "@type": "TrainStation",
+      "name": "Paris Gare De Lyon"
+    },
+    "arrivalTime": "2017-01-05T03:10:00+01:00"
+  },
+  "reservedTicket": {
+    "@type": "Ticket",
+    "ticketNumber": "123XYZ",
+    "additionalTicketText": "?",
+    "underName": {
+      "@type": "Person",
+      "name": "Mary Smith"
+    },
+    "ticketedSeat": {
+      "@type": "Seat",
+      "seatingType": "1st Class",
+      "seatNumber": "27",
+      "seatRow": "A"
+    }
+  }
+}

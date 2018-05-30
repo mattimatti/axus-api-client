@@ -1,0 +1,43 @@
+{
+    "name": "mattimatti/axus-api-client",
+    "type": "library",
+    "description": "Axus Travel App API client",
+    "homepage": "https://github.com/mattimatti/axus-api-client",
+    "keywords": [
+        "axus",
+        "travel",
+        "api"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matteo Monti",
+            "email": "developers@qofclubs.com",
+            "homepage": "http://Axus.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Axus\\": "source/Axus/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Axus\\tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "ext-curl": "*",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~1.9",
+        "phpunit/phpunit": "^5.7"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

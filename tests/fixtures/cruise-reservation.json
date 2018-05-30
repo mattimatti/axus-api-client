@@ -1,0 +1,55 @@
+{
+  "@context": "http://schema.org",
+  "@type": "CruiseReservation",
+  "reservationId": "442321",
+  "reservationNumber": "abc456",
+  "image": "http://example.com/image.png",
+  "name": "Inside Passage Cruise",
+  "cabinCategory": "Balcony",
+  "cabinNumber": "1253",
+  "beddingDescription": "Double Queen",
+  "underName": {
+    "@type": "Person",
+    "name": "John Smith"
+  },
+  "numAdults": 2,
+  "reservationFor": {
+    "@type": "CruiseBusiness",
+    "name": "Princess Cruises",
+    "telephone": "415-771-1400",
+    "url": "http://www.example.com"
+  },
+  "portsOfCall": [
+    {
+      "@type": "SeaPort",
+      "name": "Vancouver",
+      "image": "http://example.com/vancouver.png",
+      "arrivalDate": "2017-04-10T10:00:00-08:00",
+      "departureDate": "2017-04-10T16:00:00-08:00",
+      "additionalText": "Notes..."
+    },
+    {
+      "@type": "SeaPort",
+      "name": "Akron",
+      "image": "http://example.com/scenic_ohio.png",
+      "arrivalDate": "2017-04-11T10:00:00-08:00",
+      "departureDate": "2017-04-11T16:00:00-08:00",
+      "additionalText": "Notes..."
+    },
+    {
+      "@type": "SeaPort",
+      "name": "Anchorage",
+      "image": "http://example.com/anchorage.png",
+      "arrivalDate": "2017-04-12T10:00:00-08:00",
+      "additionalText": "Disembarkation Notes..."
+    }
+  ],
+  "cancellationPolicy": "24 Hours for 80% refund",
+  "ship": {
+    "@type": "CruiseShip",
+    "name": "Concordia"
+  },
+  "paymentDescription": "Paid in Full",
+  "additionalText": "Notes for the traveler ...",
+  "modifiedTime": "2013-05-01T08:00:00-08:00"
+}

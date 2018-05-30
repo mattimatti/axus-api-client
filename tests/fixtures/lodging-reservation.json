@@ -1,0 +1,37 @@
+{
+  "@context": "http://schema.org",
+  "@type": "LodgingReservation",
+  "reservationId": "442321",
+  "reservationNumber": "abc456",
+  "image": "http://example.com/image.png",
+  "underName": {
+    "@type": "Person",
+    "name": "John Smith"
+  },
+  "numAdults": 2,
+  "reservationFor": {
+    "@type": "LodgingBusiness",
+    "name": "Hilton San Francisco Union Square",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "<p><span style='color: black;'>333 O'Farrell St</span></p>",
+      "addressLocality": "San Francisco",
+      "addressRegion": "CA",
+      "postalCode": "94102",
+      "addressCountry": "US"
+    },
+    "telephone": "415-771-1400",
+    "url": "http://www.example.com"
+  },
+  "amenities": "Complementary Breakfast\nFree Wifi",
+  "cancellationPolicy": "24 Hours for 80% refund",
+  "checkoutDate": "2017-04-13T11:00:00-08:00",
+  "checkinDate": "2017-04-10T16:00:00-08:00",
+  "lodgingUnitDescription": "Bay View",
+  "beddingDescription": "Double Queen",
+  "url": "http://example.com/ExpandedHotelProfile.html",
+  "paymentDescription": "Paid in Full",
+  "lodgingDescription": "Description of lodging ...",
+  "additionalText": "Notes for the traveler ...",
+  "modifiedTime": "2013-05-01T08:00:00-08:00"
+}

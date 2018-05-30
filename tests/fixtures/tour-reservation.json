@@ -1,0 +1,37 @@
+{
+  "@context": "http://schema.org",
+  "@type": "TourReservation",
+  "reservationId": "442321",
+  "reservationNumber": "abc456",
+  "image": "http://example.com/image.png",
+  "name": "Aspen Snow Tour",
+  "underName": {
+    "@type": "Person",
+    "name": "John Smith"
+  },
+  "confirmedBy": {
+    "@type": "Person",
+    "name": "Nancy Drew"
+  },
+  "reservationFor": {
+    "@type": "LocalBusiness",
+    "name": "Joe's Tours",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "45 Village Run Cir",
+      "addressLocality": "Snowmass Village",
+      "addressRegion": "CO",
+      "postalCode": "81615",
+      "addressCountry": "US"
+    },
+    "telephone": "415-555-5555",
+    "url": "http://www.example.com"
+  },
+  "cancellationPolicy": "24 Hours",
+  "endDate": "2017-04-13T11:00:00-08:00",
+  "startDate": "2017-04-10T16:00:00-08:00",
+  "tourDescription": "A 3 hour walking tour ...",
+  "meetingPoint": "Town Square",
+  "additionalText": "Notes go here",
+  "modifiedTime": "2013-05-01T08:00:00-08:00"
+}
