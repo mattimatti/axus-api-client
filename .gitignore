@@ -6,7 +6,6 @@ build
 .php_cs.cache
 .project
 phpunit.xml
-README.md
 .DS_Store
 .editorconfig
 .buildpath
