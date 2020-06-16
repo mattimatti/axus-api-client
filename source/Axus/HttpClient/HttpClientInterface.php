@@ -1,5 +1,8 @@
 <?php
+
 namespace Axus\HttpClient;
+
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Basic client for performing HTTP requests.
@@ -9,14 +12,14 @@ namespace Axus\HttpClient;
 interface HttpClientInterface
 {
 
-    
+
     /**
      * Perform a PUT request.
      *
-     * @param string $url        URL to which the request should point
-     * @param array  $parameters Request parameters
+     * @param string $url URL to which the request should point
+     * @param array $parameters Request parameters
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
     public function put($url, array $parameters = []);
 
@@ -24,11 +27,11 @@ interface HttpClientInterface
     /**
      * Perform the actual request.
      *
-     * @param string $url        URL to which the request should point
-     * @param array  $parameters Request parameters
+     * @param string $url URL to which the request should point
+     * @param array $parameters Request parameters
      * @param string $httpMethod HTTP method to use
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
     public function performRequest($url, $parameters, $httpMethod = 'GET');
 

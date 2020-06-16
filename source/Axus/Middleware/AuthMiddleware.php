@@ -1,4 +1,5 @@
 <?php
+
 namespace Axus\Middleware;
 
 use Psr\Http\Message\RequestInterface;
@@ -12,7 +13,7 @@ class AuthMiddleware
     /**
      * Middleware that add Authorization header.
      *
-     * @param array  $token
+     * @param array $token
      * @param string $clientId
      */
     public function __construct($clientId)

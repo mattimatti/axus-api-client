@@ -1,12 +1,13 @@
 <?php
+
 namespace Axus\HttpClient;
 
+use Axus\Middleware\AuthMiddleware;
+use Axus\Middleware\ErrorMiddleware;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\HandlerStack;
-use Axus\Middleware\ErrorMiddleware;
-use Axus\Middleware\AuthMiddleware;
+use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -20,7 +21,7 @@ class HttpClient implements HttpClientInterface
     /**
      * The Guzzle instance.
      *
-     * @var \GuzzleHttp\ClientInterface
+     * @var ClientInterface
      */
     protected $client;
 
@@ -37,25 +38,25 @@ class HttpClient implements HttpClientInterface
     protected $stack;
 
     /**
-     * @param array           $options
+     * @param array $options
      * @param ClientInterface $client
      */
     public function __construct(array $options = [], ClientInterface $client = null)
     {
         $this->options = array_merge($options, $this->options);
-        
+
         $baseUrl = $this->options['base_url'];
         unset($this->options['base_url']);
-        
+
         // during test (at least) handler can be injected into the client
         // so we need to retrieve it to be able to inject our own middleware
         $this->stack = HandlerStack::create();
         if (null !== $client) {
             $this->stack = $client->getConfig('handler');
         }
-        
+
         $this->stack->push(ErrorMiddleware::error());
-        
+
         $this->client = $client ?: new GuzzleClient([
             'base_uri' => $baseUrl,
             'handler' => $this->stack
@@ -79,23 +80,36 @@ class HttpClient implements HttpClientInterface
             'headers' => [],
             'body' => ''
         ];
-        
+
         // if (isset($this->options['clientId'])) {
         // $options['headers'][] = $this->options['clientId'];
         // }
-        
+
         if (isset($parameters['query'])) {
             $options['query'] = $parameters['query'];
         }
-        
+
         if ($httpMethod === 'POST' || $httpMethod === 'PUT' || $httpMethod === 'DELETE') {
             $options['json'] = $parameters;
         }
-        
+
         $this->addAuthMiddleware($this->options['clientId']);
-        
+
         // will throw an Axus\Exception\ExceptionInterface if sth goes wrong
         return $this->client->request($httpMethod, $url, $options);
+    }
+
+    /**
+     * Push authorization middleware.
+     *
+     * @param array $token
+     * @param string $clientId
+     */
+    public function addAuthMiddleware($clientId)
+    {
+        $this->stack->push(Middleware::mapRequest(function (RequestInterface $request) use ($clientId) {
+            return (new AuthMiddleware($clientId))->addAuthHeader($request);
+        }));
     }
 
     /**
@@ -107,24 +121,11 @@ class HttpClient implements HttpClientInterface
             'data' => [],
             'success' => false
         ];
-        
+
         if ($response) {
             $responseBody = json_decode($response->getBody(), true);
         }
-        
-        return $responseBody['data'];
-    }
 
-    /**
-     * Push authorization middleware.
-     *
-     * @param array  $token
-     * @param string $clientId
-     */
-    public function addAuthMiddleware($clientId)
-    {
-        $this->stack->push(Middleware::mapRequest(function (RequestInterface $request) use ($clientId) {
-            return (new AuthMiddleware($clientId))->addAuthHeader($request);
-        }));
+        return $responseBody['data'];
     }
 }

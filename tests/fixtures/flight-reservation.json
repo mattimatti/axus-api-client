@@ -1,22 +1,25 @@
-{"@context": "http://schema.org",
+{
+  "@context": "http://schema.org",
   "@type": "FlightReservation",
   "reservationNumber": "RXJ34P",
   "reservationId": "55231",
   "url": "http://cheapair.com/view/RXJ34P",
-  "passengers": [{
-    "@type": "Person",
-    "name": "Eva Green",
-    "ticketNumber": "123XYZ",
-    "airplaneSeat": "9A",
-    "airplaneSeatClass": {
-      "@type": "AirplaneSeatClass",
-      "name": "Business"
-    },
-    "programMembership": {
-      "@type": "ProgramMembership",
-      "memberNumber": "4BY123111"
+  "passengers": [
+    {
+      "@type": "Person",
+      "name": "Eva Green",
+      "ticketNumber": "123XYZ",
+      "airplaneSeat": "9A",
+      "airplaneSeatClass": {
+        "@type": "AirplaneSeatClass",
+        "name": "Business"
+      },
+      "programMembership": {
+        "@type": "ProgramMembership",
+        "memberNumber": "4BY123111"
+      }
     }
-  }],
+  ],
   "modifiedTime": "2013-03-14T13:05:00-05:00",
   "checkinUrl": "http://united.com/onlinecheckin.html",
   "reservationFor": {

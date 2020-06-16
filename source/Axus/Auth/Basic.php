@@ -1,24 +1,24 @@
 <?php
+
 namespace Axus\Auth;
 
 use Axus\HttpClient\HttpClientInterface;
-use Axus\Exception\AuthException;
 
-/** 
+/**
  * @author mattimatti
- * 
+ *
  */
 class Basic implements AuthInterface
 {
 
     /**
-     * 
+     *
      * @var string
      */
     private $username;
 
     /**
-     * 
+     *
      * @var string
      */
     private $password;
@@ -26,12 +26,12 @@ class Basic implements AuthInterface
     /**
      * The class handling communication with Axus servers.
      *
-     * @var \Axus\HttpClient\HttpClientInterface
+     * @var HttpClientInterface
      */
     private $httpClient;
 
     /**
-     * 
+     *
      */
     public function __construct(HttpClientInterface $httpClient, $username, $password)
     {
@@ -41,12 +41,11 @@ class Basic implements AuthInterface
     }
 
     /**
-     *(non-PHPdoc) 
      * @see \Axus\Auth\AuthInterface::sign()
      */
     public function sign()
     {
-        
+
         return [
             'auth' => [
                 $this->username,

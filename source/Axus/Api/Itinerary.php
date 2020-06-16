@@ -1,4 +1,5 @@
 <?php
+
 namespace Axus\Api;
 
 /**
@@ -17,7 +18,7 @@ class Itinerary extends AbstractApi
      * @param string $username
      *
      * @link https://axustravelapp.com/api/v1/docs#itinerary
-     * 
+     *
      */
     public function base()
     {

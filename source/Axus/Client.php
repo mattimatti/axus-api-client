@@ -1,6 +1,8 @@
 <?php
+
 namespace Axus;
 
+use Axus\Api\AbstractApi;
 use Axus\Auth\AuthInterface;
 use Axus\Exception\InvalidArgumentException;
 use Axus\HttpClient\HttpClient;
@@ -26,14 +28,14 @@ class Client
     /**
      * The class handling communication with Axus servers.
      *
-     * @var \Axus\HttpClient\HttpClientInterface
+     * @var HttpClientInterface
      */
     private $httpClient;
 
     /**
      * The class handling authentication.
      *
-     * @var \Axus\Auth\AuthInterface
+     * @var AuthInterface
      */
     private $authenticationClient;
 
@@ -49,11 +51,11 @@ class Client
     }
 
     /**
-     * @param string                     $name
+     * @param string $name
      *
+     * @return AbstractApi
      * @throws InvalidArgumentException
      *
-     * @return ApiInterface
      */
     public function api($name)
     {
@@ -61,58 +63,22 @@ class Client
         if (class_exists($apiClass)) {
             return new $apiClass($this);
         }
-        
-        throw new InvalidArgumentException('API Method not supported: "' . $name . '" (apiClass: "'. $apiClass . '")');
-    }
 
-    /**
-     * @return \Axus\HttpClient\HttpClientInterface
-     */
-    public function getHttpClient()
-    {
-        if (null === $this->httpClient) {
-            $this->setHttpClient(new HttpClient($this->options));
-        }
-        
-        return $this->httpClient;
-    }
-
-    /**
-     * @param \Axus\HttpClient\HttpClientInterface $httpClient
-     */
-    public function setHttpClient(HttpClientInterface $httpClient)
-    {
-        $this->httpClient = $httpClient;
+        throw new InvalidArgumentException('API Method not supported: "' . $name . '" (apiClass: "' . $apiClass . '")');
     }
 
     /**
      * @param string $name
-     *
-     * @throws InvalidArgumentException
-     *
-     * @return string
-     */
-    public function getOption($name)
-    {
-        if (! array_key_exists($name, $this->options)) {
-            throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
-        }
-        
-        return $this->options[$name];
-    }
-
-    /**
-     * @param string $name
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @throws InvalidArgumentException
      */
     public function setOption($name, $value)
     {
-        if (! array_key_exists($name, $this->options)) {
+        if (!array_key_exists($name, $this->options)) {
             throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
         }
-        
+
         $this->options[$name] = $value;
     }
 
@@ -126,7 +92,43 @@ class Client
         if (null === $this->authenticationClient) {
             $this->authenticationClient = new Auth\Basic($this->getHttpClient(), $this->getOption('username'), $this->getOption('password'));
         }
-        
+
         return $this->authenticationClient;
+    }
+
+    /**
+     * @return HttpClientInterface
+     */
+    public function getHttpClient()
+    {
+        if (null === $this->httpClient) {
+            $this->setHttpClient(new HttpClient($this->options));
+        }
+
+        return $this->httpClient;
+    }
+
+    /**
+     * @param HttpClientInterface $httpClient
+     */
+    public function setHttpClient(HttpClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     * @throws InvalidArgumentException
+     *
+     */
+    public function getOption($name)
+    {
+        if (!array_key_exists($name, $this->options)) {
+            throw new InvalidArgumentException(sprintf('Undefined option called: "%s"', $name));
+        }
+
+        return $this->options[$name];
     }
 }

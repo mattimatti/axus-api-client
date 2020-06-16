@@ -1,12 +1,12 @@
 <?php
+
 namespace Axus\tests\HttpClient;
 
+use Axus\HttpClient\HttpClient;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Axus\HttpClient\HttpClient;
 use PHPUnit\Framework\TestCase;
 
 class HttpClientTest extends TestCase

@@ -1,4 +1,5 @@
 <?php
+
 namespace Axus\Exception;
 
 class MissingArgumentException extends ErrorException
@@ -11,7 +12,7 @@ class MissingArgumentException extends ErrorException
                 $required
             ];
         }
-        
+
         parent::__construct(sprintf('One or more of required ("%s") parameters is missing!', implode('", "', $required)), $code, $previous);
     }
 }

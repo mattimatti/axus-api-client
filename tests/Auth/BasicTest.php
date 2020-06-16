@@ -1,4 +1,5 @@
 <?php
+
 namespace Axus\tests\Auth;
 
 use Axus\Auth\Basic;

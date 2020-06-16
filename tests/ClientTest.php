@@ -1,7 +1,9 @@
 <?php
+
 namespace Axus\tests;
 
 use Axus\Client;
+use Axus\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -10,6 +12,39 @@ use PHPUnit\Framework\TestCase;
  */
 class ClientTest extends TestCase
 {
+
+    public function testNoParameters()
+    {
+        $client = new Client();
+        $this->assertInstanceOf('Axus\HttpClient\HttpClient', $client->getHttpClient());
+        $this->assertInstanceOf('Axus\Auth\Basic', $client->getAuthenticationClient());
+    }
+
+    public function testAuthenticationParameter()
+    {
+        $client = new Client($this->getAuthenticationClientMock());
+        $this->assertInstanceOf('Axus\HttpClient\HttpClient', $client->getHttpClient());
+        $this->assertInstanceOf('Axus\Auth\AuthInterface', $client->getAuthenticationClient());
+    }
+
+    private function getAuthenticationClientMock(array $methods = [])
+    {
+        $methods = array_merge([
+            'sign'
+        ], $methods);
+
+        return $this->getMockBuilder('Axus\Auth\Basic')
+            ->disableOriginalConstructor()
+            ->setMethods($methods)
+            ->getMock();
+    }
+
+    public function testHttpParameter()
+    {
+        $client = new Client(null, $this->getHttpClientMock());
+        $this->assertInstanceOf('Axus\HttpClient\HttpClientInterface', $client->getHttpClient());
+        $this->assertInstanceOf('Axus\Auth\Basic', $client->getAuthenticationClient());
+    }
 
     private function getHttpClientMock(array $methods = [])
     {
@@ -28,39 +63,6 @@ class ClientTest extends TestCase
             ->disableOriginalConstructor()
             ->setMethods($methods)
             ->getMock();
-    }
-
-    private function getAuthenticationClientMock(array $methods = [])
-    {
-        $methods = array_merge([
-            'sign'
-        ], $methods);
-
-        return $this->getMockBuilder('Axus\Auth\Basic')
-            ->disableOriginalConstructor()
-            ->setMethods($methods)
-            ->getMock();
-    }
-
-    public function testNoParameters()
-    {
-        $client = new Client();
-        $this->assertInstanceOf('Axus\HttpClient\HttpClient', $client->getHttpClient());
-        $this->assertInstanceOf('Axus\Auth\Basic', $client->getAuthenticationClient());
-    }
-
-    public function testAuthenticationParameter()
-    {
-        $client = new Client($this->getAuthenticationClientMock());
-        $this->assertInstanceOf('Axus\HttpClient\HttpClient', $client->getHttpClient());
-        $this->assertInstanceOf('Axus\Auth\AuthInterface', $client->getAuthenticationClient());
-    }
-
-    public function testHttpParameter()
-    {
-        $client = new Client(null, $this->getHttpClientMock());
-        $this->assertInstanceOf('Axus\HttpClient\HttpClientInterface', $client->getHttpClient());
-        $this->assertInstanceOf('Axus\Auth\Basic', $client->getAuthenticationClient());
     }
 
     public function testBothParameter()
@@ -90,7 +92,7 @@ class ClientTest extends TestCase
     }
 
     /**
-     * @expectedException \Axus\Exception\InvalidArgumentException
+     * @expectedException InvalidArgumentException
      */
     public function testNotGetApiInstance()
     {
@@ -99,7 +101,7 @@ class ClientTest extends TestCase
     }
 
     /**
-     * @expectedException \Axus\Exception\InvalidArgumentException
+     * @expectedException InvalidArgumentException
      */
     public function testGetOptionNotDefined()
     {
@@ -108,7 +110,7 @@ class ClientTest extends TestCase
     }
 
     /**
-     * @expectedException \Axus\Exception\InvalidArgumentException
+     * @expectedException InvalidArgumentException
      */
     public function testSetOptionNotDefined()
     {
