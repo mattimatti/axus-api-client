@@ -7,23 +7,24 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
-class BasicTest extends \PHPUnit_Framework_TestCase
+class BasicTest extends TestCase
 {
 
     public function testGetAuthenticationUrl()
     {
         $client = new GuzzleClient();
-        
+
         $auth = new Basic(new HttpClient([], $client), 'matti', 'matti');
-        
+
         $expected = [
             'auth' => [
                 'matti',
                 'matti'
             ]
         ];
-        
+
         $this->assertEquals($expected, $auth->sign());
     }
 
@@ -44,12 +45,12 @@ class BasicTest extends \PHPUnit_Framework_TestCase
         $client = new GuzzleClient([
             'handler' => $handler
         ]);
-        
+
         $httpClient = new HttpClient([], $client);
-        
+
         $auth = new Basic($httpClient, 123, 456);
         $auth->sign();
-        
+
         $httpClient->put('http://google.com');
     }
 }

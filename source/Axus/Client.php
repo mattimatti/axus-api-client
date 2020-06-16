@@ -19,7 +19,8 @@ class Client
         'base_url' => 'https://axustravelapp.com/api/v1/push/',
         'username' => null,
         'password' => null,
-        'clientId' => null
+        'clientId' => null,
+        'testing' => false
     ];
 
     /**

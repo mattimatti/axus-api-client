@@ -9,6 +9,7 @@ use Axus\Api\Account;
 use Axus\Client;
 use Axus\HttpClient\HttpClient;
 use Axus\Api\Itinerary;
+use CLIFramework\Logger;
 
 class ItineraryTest extends ApiTestCase
 {
@@ -27,13 +28,24 @@ class ItineraryTest extends ApiTestCase
         $guzzleClient = new GuzzleClient([
             'base_uri' => 'https://axustravelapp.com/api/v1/push/'
         ]);
+        
+//         var_dump($guzzleClient);
+//         exit();
+        
         $httpClient = new HttpClient([], $guzzleClient);
+        
         $client = new Client(null, $httpClient);
         $itinerary = new Itinerary($client);
         
-        $itinerary->base();
+        $result = $itinerary->base();
+        
+        var_dump($result);
+        exit();
     }
 
+    /**
+     * 
+     */
     public function testBaseWithResponse()
     {
         $mock = new MockHandler([
@@ -64,9 +76,11 @@ class ItineraryTest extends ApiTestCase
         $this->assertArrayHasKey('travelers', $result);
         $this->assertArrayHasKey('collaborators', $result);
         $this->assertArrayHasKey('bookings', $result);
-        
     }
 
+    /**
+     * 
+     */
     public function testBase()
     {
         $expectedValue = [

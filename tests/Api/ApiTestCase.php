@@ -2,8 +2,9 @@
 namespace Axus\tests\Api;
 
 use Axus\Client;
+use PHPUnit\Framework\TestCase;
 
-abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
+abstract class ApiTestCase extends TestCase
 {
 
     abstract protected function getApiClass();
@@ -15,9 +16,9 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
             ->getMock();
         $httpClient->expects($this->any())
             ->method('put');
-        
+
         $client = new Client(null, $httpClient);
-        
+
         return $this->getMockBuilder($this->getApiClass())
             ->setMethods([
             'put'
@@ -27,14 +28,18 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
         ])
             ->getMock();
     }
-    
-    
-    
+
+
+    /**
+     *
+     * @param unknown $filename
+     * @return mixed
+     */
     protected function loadFixture($filename){
         $path = __DIR__;
         $json = file_get_contents($path. '/../fixtures/' . $filename);
         return json_decode($json, true);
     }
-    
-    
+
+
 }

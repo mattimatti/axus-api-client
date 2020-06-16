@@ -2,13 +2,13 @@
 namespace Axus\tests;
 
 use Axus\Client;
+use PHPUnit\Framework\TestCase;
 
 /**
- * 'https://Axus.qofclubs.com/api/3/'
  * @author mattimatti
  *
  */
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
 
     private function getHttpClientMock(array $methods = [])
@@ -23,7 +23,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             'createRequest',
             'parseResponse'
         ], $methods);
-        
+
         return $this->getMockBuilder('Axus\HttpClient\HttpClient')
             ->disableOriginalConstructor()
             ->setMethods($methods)
@@ -35,7 +35,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $methods = array_merge([
             'sign'
         ], $methods);
-        
+
         return $this->getMockBuilder('Axus\Auth\Basic')
             ->disableOriginalConstructor()
             ->setMethods($methods)
@@ -123,7 +123,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $client = new Client();
         $client->setOption($option, $value);
-        
+
         $this->assertSame($value, $client->getOption($option));
     }
 

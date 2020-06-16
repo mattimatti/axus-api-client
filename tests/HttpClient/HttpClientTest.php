@@ -7,8 +7,9 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Axus\HttpClient\HttpClient;
+use PHPUnit\Framework\TestCase;
 
-class HttpClientTest extends \PHPUnit_Framework_TestCase
+class HttpClientTest extends TestCase
 {
 
     public function testOptionsToConstructor()
@@ -18,7 +19,7 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
                 'Cache-Control' => 'no-cache'
             ]
         ]);
-        
+
         $this->assertSame([
             'Cache-Control' => 'no-cache'
         ], $httpClient->getOption('headers'));
@@ -31,7 +32,7 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $parameters = [
             'a' => 'b'
         ];
-        
+
         $mock = new MockHandler([
             new Response(200, [
                 'Content-Type' => 'application/json'
@@ -43,12 +44,12 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $client = new GuzzleClient([
             'handler' => $handler
         ]);
-        
+
         $httpClient = new HttpClient([], $client);
         $response = $httpClient->put($path, $parameters);
-        
+
         $result = $httpClient->parseResponse($response);
-        
+
         $this->assertSame('ok !', $result);
     }
 
@@ -58,7 +59,7 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $options = [
             'c' => 'd'
         ];
-        
+
         $mock = new MockHandler([
             new Response(200, [
                 'Content-Type' => 'application/json'
@@ -70,12 +71,12 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $client = new GuzzleClient([
             'handler' => $handler
         ]);
-        
+
         $httpClient = new HttpClient([], $client);
         $response = $httpClient->performRequest($path, $options, 'HEAD');
-        
+
         $result = $httpClient->parseResponse($response);
-        
+
         $this->assertTrue($result);
     }
 
