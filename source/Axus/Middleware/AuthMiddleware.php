@@ -27,6 +27,7 @@ class AuthMiddleware
      */
     public function addAuthHeader(RequestInterface $request)
     {
-        return $request->withHeader('Authorization', 'ClientId ' . $this->clientId);
+//        return $request->withHeader('Authorization', 'ClientId ' . $this->clientId);
+        return $request->withHeader('ClientId', $this->clientId);
     }
 }
