@@ -1,15 +1,17 @@
 AXUS API CLIENT
 ------------
 
-This repository provides an UNOFFICIAL php library to ease connection to Axus Travel App V1 push endpoint as described in this documentation page
+This repository provides an UNOFFICIAL php library to ease connection to Axus Travel App V1 endpoints as described in this documentation page
 
-https://axustravelapp.com/api/v1/docs/push
+https://axustravelapp.com/api/v1/docs
 
 
 
 
     
 #### Build
+
+https://packagist.org/packages/corneltek/phprelease
 
 Each task has its own options, run help command, you should see the options from these tasks:
 

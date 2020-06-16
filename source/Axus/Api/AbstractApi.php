@@ -2,8 +2,10 @@
 
 namespace Axus\Api;
 
+use App\Logger;
 use Axus\Client;
 use Axus\Exception\InvalidArgumentException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Abstract class supporting API requests.
@@ -25,33 +27,78 @@ abstract class AbstractApi
 
     /**
      * Perform a PUT request and return the parsed response.
-     *
      * @param string $url
-     *
      * @return array
      */
     public function put($url, $parameters = [])
     {
         $httpClient = $this->client->getHttpClient();
-
-        $parameters = array_merge($parameters, $this->client->getAuthenticationClient()->sign());
-
-        $response = $httpClient->put($url, $parameters);
-
-        return $httpClient->parseResponse($response);
+        return $httpClient->put($url, $parameters);
     }
 
+
     /**
-     * Global method to validate an argument.
-     *
-     * @param string $type The required parameter (used for the error message)
-     * @param string $input Input value
-     * @param array $possibleValues Possible values for this argument
+     * @param $url
+     * @param array $parameters
+     * @return mixed
      */
-    private function validateArgument($type, $input, $possibleValues)
+    public function get($url, $parameters = [])
     {
-        if (!in_array($input, $possibleValues, true)) {
-            throw new InvalidArgumentException($type . ' parameter "' . $input . '" is wrong. Possible values are: ' . implode(', ', $possibleValues));
+        $httpClient = $this->client->getHttpClient();
+        return $httpClient->get($url, $parameters);
+    }
+
+
+    /**
+     * @param ResponseInterface $response
+     * @return array
+     */
+    protected function parseResponse(ResponseInterface $response)
+    {
+        if ($body = $response->getBody()) {
+            $data = json_decode($body, true);
+            $this->parseErrors($data);
+            return $data;
+        }
+        return [];
+    }
+
+
+    /**
+     * @param array $responseArray
+     */
+    protected function parseErrors(array $responseArray)
+    {
+        if (array_key_exists('errors', $responseArray)) {
+            if (!empty($responseArray['errors'])) {
+                foreach ($responseArray['errors'] as $error) {
+                    throw new \Exception($error);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * @param $key
+     * @param $parameters
+     */
+    protected function validateArgument($key, $arguments)
+    {
+        if (!array_key_exists($key, $arguments)) {
+            throw new InvalidArgumentException("Missing argument $key");
+        }
+    }
+
+
+    /**
+     * @param $key
+     * @param $parameters
+     */
+    protected function validateParameter($key, $parameters)
+    {
+        if (!array_key_exists($key, $parameters)) {
+            throw new InvalidArgumentException("Missing parameter $key");
         }
     }
 }

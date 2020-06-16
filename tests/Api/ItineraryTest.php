@@ -3,66 +3,19 @@
 namespace Axus\tests\Api;
 
 use Axus\Api\Itinerary;
-use Axus\Client;
-use Axus\Exception\ErrorException;
-use Axus\HttpClient\HttpClient;
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
 
 class ItineraryTest extends ApiTestCase
 {
 
     /**
-     * @expectedException ErrorException
-     * @expectedExceptionMessage Authentication required
-     */
-    public function testBaseReal()
-    {
-        $guzzleClient = new GuzzleClient([
-            'base_uri' => 'https://axustravelapp.com/api/v1/push/'
-        ]);
-
-//         var_dump($guzzleClient);
-//         exit();
-
-        $httpClient = new HttpClient([], $guzzleClient);
-
-        $client = new Client(null, $httpClient);
-        $itinerary = new Itinerary($client);
-
-        $result = $itinerary->base();
-
-        var_dump($result);
-        exit();
-    }
-
-    /**
      *
      */
-    public function testBaseWithResponse()
+    public function testGetByIdResponse()
     {
-        $mock = new MockHandler([
-            new Response(200, [
-                'Content-Type' => 'application/json'
-            ], json_encode([
-                'data' => $this->loadFixture('itinerary-itin.json'),
-                'success' => true,
-                'status' => 200
-            ]))
-        ]);
-        $handler = HandlerStack::create($mock);
-        $guzzleClient = new GuzzleClient([
-            'handler' => $handler
-        ]);
-
-        $httpClient = new HttpClient([], $guzzleClient);
-        $client = new Client(null, $httpClient);
+        $client = $this->buildMockRequest('itinerary-itin.json');
         $itinerary = new Itinerary($client);
 
-        $result = $itinerary->base();
-
+        $result = $itinerary->getById(['token' => '123', 'itineraryId' => '123']);
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('title', $result);
         $this->assertArrayHasKey('startDate', $result);
@@ -74,29 +27,46 @@ class ItineraryTest extends ApiTestCase
     }
 
     /**
+     */
+    public function testGetRequiresAToken()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $client = $this->buildMockRequest('itinerary-itin.json');
+        $itinerary = new Itinerary($client);
+
+        $result = $itinerary->getById(['itineraryId' => '123']);
+    }
+
+    /**
+     */
+    public function testGetByIdRequiresAnId()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $client = $this->buildMockRequest('itinerary-itin.json');
+        $itinerary = new Itinerary($client);
+
+        $result = $itinerary->getById(['token' => '123']);
+    }
+
+
+    /**
      *
      */
-    public function testBase()
+    public function testGetAll()
     {
-        $expectedValue = [
-            'data' => [
-                'id' => 123
-            ],
-            'success' => true,
-            'status' => 200
-        ];
+        $client = $this->buildMockRequest('itinerary-list.json');
+        $itinerary = new Itinerary($client);
 
-        $api = $this->getApiMock();
-        $api->expects($this->once())
-            ->method('put')
-            ->with('itinerary')
-            ->will($this->returnValue($expectedValue));
-
-        $this->assertSame($expectedValue, $api->base());
+        $result = $itinerary->getAll(['token' => '123']);
+        $this->assertCount(4, $result);
     }
 
     protected function getApiClass()
     {
         return 'Axus\Api\Itinerary';
     }
+
+
 }

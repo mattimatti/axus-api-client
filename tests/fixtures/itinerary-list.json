@@ -1,0 +1,33 @@
+{
+  "errors": [],
+  "itineraries": [
+    {
+      "guid": "3418dad3-2508-4b9c-90ba-a113d066c4cd",
+      "createdAt": "2018-12-03T18:17:02.820Z",
+      "name": "Chicago in Winter",
+      "itineraryId": 8916,
+      "updatedAt": "2019-01-08T22:57:28.868Z"
+    },
+    {
+      "guid": "7e00c343-0558-42ab-a1b3-dc755ba1b60a",
+      "createdAt": "2018-12-13T13:45:34.410Z",
+      "name": "The Best of Ethiopia",
+      "itineraryId": 8923,
+      "updatedAt": "2018-12-13T13:45:36.720Z"
+    },
+    {
+      "guid": "86e17a4d-7136-415e-9fec-59b35268fa1d",
+      "createdAt": "2018-11-05T20:19:42.622Z",
+      "name": "New York Weekend",
+      "itineraryId": 8896,
+      "updatedAt": "2018-11-05T20:19:42.662Z"
+    },
+    {
+      "guid": "412e4a56-95ba-49a5-a89a-a72cc9b786f9",
+      "createdAt": "2018-11-05T20:14:31.296Z",
+      "name": "Family Reunion in St. John",
+      "itineraryId": 8895,
+      "updatedAt": "2019-01-08T22:29:05.165Z"
+    }
+  ]
+}

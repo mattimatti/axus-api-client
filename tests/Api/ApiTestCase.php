@@ -3,10 +3,36 @@
 namespace Axus\tests\Api;
 
 use Axus\Client;
+use Axus\HttpClient\HttpClient;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
 abstract class ApiTestCase extends TestCase
 {
+
+
+    /**
+     * @return Client
+     */
+    protected function buildMockRequest($file): Client
+    {
+        $mock = new MockHandler([
+            new Response(200, [
+                'Content-Type' => 'application/json'
+            ], json_encode($this->loadFixture($file)))
+        ]);
+        $handler = HandlerStack::create($mock);
+        $guzzleClient = new GuzzleClient([
+            'handler' => $handler
+        ]);
+
+        $httpClient = new HttpClient([], $guzzleClient);
+        $client = new Client(null, $httpClient);
+        return $client;
+    }
 
     protected function getApiMock()
     {

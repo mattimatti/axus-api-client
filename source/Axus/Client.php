@@ -18,10 +18,11 @@ class Client
      * @var array
      */
     private $options = [
-        'base_url' => 'https://axustravelapp.com/api/v1/push/',
+        'base_url' => 'https://axustravelapp.com/api/v1/',
         'username' => null,
         'password' => null,
         'clientId' => null,
+        'debug' => false, // This will enable Guzzle Client debug (see Guzzle 6x options)
         'testing' => false
     ];
 

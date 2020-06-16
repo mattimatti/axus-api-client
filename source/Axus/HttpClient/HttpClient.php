@@ -2,13 +2,11 @@
 
 namespace Axus\HttpClient;
 
-use Axus\Middleware\AuthMiddleware;
 use Axus\Middleware\ErrorMiddleware;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Basic client for performing HTTP requests.
@@ -31,7 +29,7 @@ class HttpClient implements HttpClientInterface
      * @var array
      */
     protected $options = [
-        'base_url' => 'https://axustravelapp.com/api/v1/push/',
+        'base_url' => 'https://axustravelapp.com/api/v1/',
         'clientId' => null
     ];
 
@@ -43,7 +41,7 @@ class HttpClient implements HttpClientInterface
      */
     public function __construct(array $options = [], ClientInterface $client = null)
     {
-        $this->options = array_merge($options, $this->options);
+        $this->options = array_merge($this->options, $options);
 
         $baseUrl = $this->options['base_url'];
         unset($this->options['base_url']);
@@ -64,12 +62,31 @@ class HttpClient implements HttpClientInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Perform a PUT request.
+     *
+     * @param string $url URL to which the request should point
+     * @param array $parameters Request parameters
+     *
+     * @return ResponseInterface
      */
     public function put($url, array $parameters = [])
     {
         return $this->performRequest($url, $parameters, 'PUT');
     }
+
+    /**
+     * Perform a GET request.
+     *
+     * @param string $url URL to which the request should point
+     * @param array $parameters Request parameters
+     *
+     * @return ResponseInterface
+     */
+    public function get($url, array $parameters = [])
+    {
+        return $this->performRequest($url, $parameters, 'GET');
+    }
+
 
     /**
      * {@inheritdoc}
@@ -78,12 +95,22 @@ class HttpClient implements HttpClientInterface
     {
         $options = [
             'headers' => [],
+            'tiemout' => 5,
             'body' => ''
         ];
 
-        // if (isset($this->options['clientId'])) {
-        // $options['headers'][] = $this->options['clientId'];
-        // }
+        // Add The ClientId header
+        if (isset($this->options['clientId'])) {
+            $options['headers']['clientId'] = $this->options['clientId'];
+//            $options['headers']['User-Agent'] = "PHP Axus Api Client";
+        }
+
+        // Setup Basic Auth
+        if (isset($this->options['username'])) {
+            if (isset($this->options['password'])) {
+                $options['auth'] = [$this->options['username'], $this->options['password']];
+            }
+        }
 
         if (isset($parameters['query'])) {
             $options['query'] = $parameters['query'];
@@ -93,24 +120,14 @@ class HttpClient implements HttpClientInterface
             $options['json'] = $parameters;
         }
 
-        $this->addAuthMiddleware($this->options['clientId']);
+        if (isset($this->options['debug']) && $this->options['debug'] !== false) {
+            $options['debug'] = $this->options['debug'];
+        }
 
         // will throw an Axus\Exception\ExceptionInterface if sth goes wrong
         return $this->client->request($httpMethod, $url, $options);
     }
 
-    /**
-     * Push authorization middleware.
-     *
-     * @param array $token
-     * @param string $clientId
-     */
-    public function addAuthMiddleware($clientId)
-    {
-        $this->stack->push(Middleware::mapRequest(function (RequestInterface $request) use ($clientId) {
-            return (new AuthMiddleware($clientId))->addAuthHeader($request);
-        }));
-    }
 
     /**
      * {@inheritdoc}
@@ -123,7 +140,7 @@ class HttpClient implements HttpClientInterface
         ];
 
         if ($response) {
-            $responseBody = json_decode($response->getBody(), true);
+            $responseBody = json_decode($response->getBody()->getContents(), true);
         }
 
         return $responseBody['data'];
