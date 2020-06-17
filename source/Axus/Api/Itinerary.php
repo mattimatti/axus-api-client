@@ -2,6 +2,8 @@
 
 namespace Axus\Api;
 
+use Psr\Http\Message\ResponseInterface;
+
 /**
  * CRUD for Itineraries.
  *
@@ -14,7 +16,7 @@ class Itinerary extends AbstractApi
 
     /**
      * @param array $parameters
-     * @return array
+     * @return ResponseInterface
      */
     public function push(array $parameters = [])
     {
@@ -23,14 +25,18 @@ class Itinerary extends AbstractApi
 
 
     /**
+     * Return All the Itineraries related to a ClientId
+     *
      * @param array $parameters
-     * @return array
+     * @return ResponseInterface
      */
     public function getAll(array $parameters = [])
     {
         $this->validateArgument('token', $parameters);
+
         $response = $this->get("pull/itinerary", $parameters);
         $data = $this->parseResponse($response);
+        $this->validateParameter('itineraries', $data);
         return $data['itineraries'];
     }
 
@@ -42,6 +48,7 @@ class Itinerary extends AbstractApi
     {
         $this->validateArgument('token', $parameters);
         $this->validateArgument('itineraryId', $parameters);
+
         $response = $this->get("pull/itinerary", $parameters);
         $data = $this->parseResponse($response);
         $this->validateParameter('itinerary', $data);
