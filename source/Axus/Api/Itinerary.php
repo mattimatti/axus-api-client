@@ -78,8 +78,10 @@ class Itinerary extends AbstractApi
     {
         $this->validateArgument('token', $parameters);
         $this->validateArgument('travelerId', $parameters);
+
         $response = $this->get("pull/itinerary", $parameters);
         $data = $this->parseResponse($response);
+
         return $data['itineraries'];
     }
 
@@ -92,8 +94,10 @@ class Itinerary extends AbstractApi
         $this->validateArgument('token', $parameters);
         $this->validateArgument('travelerId', $parameters);
         $this->validateArgument('advisorId', $parameters);
+
         $response = $this->get("pull/itinerary", $parameters);
         $data = $this->parseResponse($response);
+
         return $data['itineraries'];
     }
 
