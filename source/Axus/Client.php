@@ -7,6 +7,7 @@ use Axus\Auth\AuthInterface;
 use Axus\Exception\InvalidArgumentException;
 use Axus\HttpClient\HttpClient;
 use Axus\HttpClient\HttpClientInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * PHP Axus API wrapper.
@@ -40,15 +41,25 @@ class Client
      */
     private $authenticationClient;
 
+
+    /**
+     * A new PSR-3 Logger like Monolog
+     * @var LoggerInterface
+     */
+    private $logger;
+
     /**
      * Instantiate a new Axus client.
      *
+     * @param null|AuthInterface $authenticationClient Authentication client
      * @param null|HttpClientInterface $httpClient Axus http client
+     * @param null|LoggerInterface $logger A PSR3 logger Instance like Monolog
      */
-    public function __construct(AuthInterface $authenticationClient = null, HttpClientInterface $httpClient = null)
+    public function __construct(AuthInterface $authenticationClient = null, HttpClientInterface $httpClient = null, LoggerInterface $logger = null)
     {
         $this->httpClient = $httpClient;
         $this->authenticationClient = $authenticationClient;
+        $this->logger = $logger;
     }
 
     /**
@@ -103,7 +114,7 @@ class Client
     public function getHttpClient()
     {
         if (null === $this->httpClient) {
-            $this->setHttpClient(new HttpClient($this->options));
+            $this->setHttpClient(new HttpClient($this->options, null, $this->logger));
         }
 
         return $this->httpClient;

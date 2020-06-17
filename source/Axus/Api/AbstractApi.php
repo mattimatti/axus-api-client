@@ -2,10 +2,10 @@
 
 namespace Axus\Api;
 
-use App\Logger;
 use Axus\Client;
 use Axus\Exception\InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
+use \Exception;
 
 /**
  * Abstract class supporting API requests.
@@ -28,7 +28,7 @@ abstract class AbstractApi
     /**
      * Perform a PUT request and return the parsed response.
      * @param string $url
-     * @return array
+     * @return ResponseInterface
      */
     public function put($url, $parameters = [])
     {
@@ -40,7 +40,7 @@ abstract class AbstractApi
     /**
      * @param $url
      * @param array $parameters
-     * @return mixed
+     * @return ResponseInterface
      */
     public function get($url, $parameters = [])
     {
@@ -71,9 +71,7 @@ abstract class AbstractApi
     {
         if (array_key_exists('errors', $responseArray)) {
             if (!empty($responseArray['errors'])) {
-                foreach ($responseArray['errors'] as $error) {
-                    throw new \Exception($error);
-                }
+                throw new Exception($responseArray['errors']);
             }
         }
     }

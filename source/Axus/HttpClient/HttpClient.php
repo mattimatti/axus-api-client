@@ -6,7 +6,9 @@ use Axus\Middleware\ErrorMiddleware;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
+use GuzzleLogMiddleware\LogMiddleware;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Basic client for performing HTTP requests.
@@ -38,8 +40,9 @@ class HttpClient implements HttpClientInterface
     /**
      * @param array $options
      * @param ClientInterface $client
+     * @param LoggerInterface $logger
      */
-    public function __construct(array $options = [], ClientInterface $client = null)
+    public function __construct(array $options = [], ClientInterface $client = null, LoggerInterface $logger = null)
     {
         $this->options = array_merge($this->options, $options);
 
@@ -54,6 +57,11 @@ class HttpClient implements HttpClientInterface
         }
 
         $this->stack->push(ErrorMiddleware::error());
+
+        // add logging
+        if (null !== $logger) {
+            $this->stack->push(new LogMiddleware($logger));
+        }
 
         $this->client = $client ?: new GuzzleClient([
             'base_uri' => $baseUrl,
