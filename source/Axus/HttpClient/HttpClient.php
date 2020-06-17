@@ -3,10 +3,10 @@
 namespace Axus\HttpClient;
 
 use Axus\Middleware\ErrorMiddleware;
+use Gmponos\GuzzleLogger\Middleware\LoggerMiddleware;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
-use GuzzleLogMiddleware\LogMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -60,7 +60,7 @@ class HttpClient implements HttpClientInterface
 
         // add logging
         if (null !== $logger) {
-            $this->stack->push(new LogMiddleware($logger));
+            $this->stack->push(new LoggerMiddleware($logger));
         }
 
         $this->client = $client ?: new GuzzleClient([
