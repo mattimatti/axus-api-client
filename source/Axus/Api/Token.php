@@ -15,23 +15,24 @@ class Token extends AbstractApi
 {
 
     /**
-     * @param array $parameters
-     * @return array
+     * @return string
+     * @throws \Exception|\InvalidArgumentException
      */
-    public function getToken(array $parameters = [])
+    public function getToken()
     {
         return $this->parseToken($this->get("pull/token"));
     }
 
     /**
      * @param ResponseInterface $response
-     * @return mixed
-     * @throws \Exception
+     * @return string
+     * @throws \Exception|\InvalidArgumentException
      */
     private function parseToken(ResponseInterface $response)
     {
         $data = $this->parseResponse($response);
         $this->parseErrors($data);
+        $this->validateParameter('token', $data);
         return $data['token'];
     }
 
