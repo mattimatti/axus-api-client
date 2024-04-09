@@ -30,7 +30,7 @@
     "require": {
         "php": ">=7.1.33",
         "ext-curl": "*",
-        "guzzlehttp/guzzle": "^6.0",
+        "guzzlehttp/guzzle": "^6.0 || ^7.0",
         "ext-json": "*",
         "gmponos/guzzle_logger": "0.6"
     },
